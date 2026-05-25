@@ -1,4 +1,4 @@
-package com.dsa.math;
+package com.dsa.ds1math;
 
 /**
  * Class to compute power using Iterative Fast Exponentiation (Exponentiation by Squaring).

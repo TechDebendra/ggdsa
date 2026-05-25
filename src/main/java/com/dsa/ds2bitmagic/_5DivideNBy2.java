@@ -1,4 +1,4 @@
-package com.dsa.bitmagic;
+package com.dsa.ds2bitmagic;
 
 public class _5DivideNBy2 {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.dsa.bitmagic;
+package com.dsa.ds2bitmagic;
 
 /**
  * Demonstrates how to toggle the nth bit of a number.

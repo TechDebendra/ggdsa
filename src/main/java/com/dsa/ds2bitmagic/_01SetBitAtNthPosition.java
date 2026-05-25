@@ -1,4 +1,4 @@
-package com.dsa.bitmagic;
+package com.dsa.ds2bitmagic;
 
 /**
  * Utility class to set the nth bit (1-based indexing) of a given number.

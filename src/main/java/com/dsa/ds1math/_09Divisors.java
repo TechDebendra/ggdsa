@@ -1,4 +1,4 @@
-package com.dsa.math;
+package com.dsa.ds1math;
 
 public class _09Divisors {
     public static void main(String[] args) {

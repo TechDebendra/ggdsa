@@ -1,4 +1,4 @@
-package com.dsa.math;
+package com.dsa.ds1math;
 
 public class _03FactorialOfNum {
     public static void main(String[] args) {

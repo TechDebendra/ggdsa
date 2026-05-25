@@ -1,4 +1,4 @@
-package com.dsa.math;
+package com.dsa.ds1math;
 /*
 * Time Complexity: O(log n)
 * Space Complexity: O(1)

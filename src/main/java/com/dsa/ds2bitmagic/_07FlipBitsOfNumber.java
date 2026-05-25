@@ -1,4 +1,4 @@
-package com.dsa.bitmagic;
+package com.dsa.ds2bitmagic;
 
 /**
  * Demonstrates how to flip all bits of a number.
