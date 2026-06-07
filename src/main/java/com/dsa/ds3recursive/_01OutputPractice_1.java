@@ -65,7 +65,6 @@ public class _01OutputPractice_1 {
      * <p>
      * The function recursively calls itself twice with (n - 1)
      * and prints n between the recursive calls.
-     *
      * Example:
      * <pre>
      * fun2(3)
@@ -95,7 +94,6 @@ public class _01OutputPractice_1 {
      * Calculates floor(log₂(n)) recursively.
      * <p>
      * The number is repeatedly divided by 2 until it becomes 1.
-     *
      * Examples:
      * <pre>
      * fun3(16) = 4
@@ -118,7 +116,6 @@ public class _01OutputPractice_1 {
      * Calculates floor(log₃(n)) recursively.
      * <p>
      * The number is repeatedly divided by 3 until it becomes less than 3.
-     *
      * Examples:
      * <pre>
      * fun4(27) = 3
@@ -142,7 +139,6 @@ public class _01OutputPractice_1 {
      * <p>
      * The number is repeatedly divided by 2 and the remainder is printed
      * while the recursive calls return.
-     *
      * Example:
      * <pre>
      * fun5(7)
