@@ -1,4 +1,4 @@
-package com.dsa.ds5Searching;
+package com.dsa.ds5searching;
 
 /**
  * Searches an element in a sorted rotated array.

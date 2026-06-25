@@ -1,4 +1,4 @@
-package com.dsa.ds5Searching;
+package com.dsa.ds5searching;
 
 public class _04IndexOfLastOccurrenceInSorted {
     public static void main(String[] args) {

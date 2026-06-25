@@ -1,4 +1,4 @@
-package com.dsa.ds5Searching;
+package com.dsa.ds5searching;
 
 /**
  * Finds any peak element in an array using Binary Search.

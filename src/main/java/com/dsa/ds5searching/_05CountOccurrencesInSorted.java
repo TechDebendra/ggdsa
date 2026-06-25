@@ -1,4 +1,4 @@
-package com.dsa.ds5Searching;
+package com.dsa.ds5searching;
 
 /**
  * Counts the number of occurrences of a given element

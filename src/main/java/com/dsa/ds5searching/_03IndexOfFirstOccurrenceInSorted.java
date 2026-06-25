@@ -1,4 +1,4 @@
-package com.dsa.ds5Searching;
+package com.dsa.ds5searching;
 
 public class _03IndexOfFirstOccurrenceInSorted {
     public static void main(String[] args) {

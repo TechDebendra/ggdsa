@@ -1,4 +1,4 @@
-package com.dsa.ds5Searching;
+package com.dsa.ds5searching;
 
 /**
  * Allocate Minimum Pages Problem (Recursive Solution).

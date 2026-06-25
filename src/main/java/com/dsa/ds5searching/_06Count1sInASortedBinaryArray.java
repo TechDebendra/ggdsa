@@ -1,4 +1,4 @@
-package com.dsa.ds5Searching;
+package com.dsa.ds5searching;
 
 /**
  * Counts the number of 1s in a sorted binary array.
