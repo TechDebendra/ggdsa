@@ -22,7 +22,7 @@ public class _08ReverseLinkedList {
 
     public static Node reverse(Node head){
         if (head == null){
-            return head;
+            return null;
         }
 
         Node prev = null;
