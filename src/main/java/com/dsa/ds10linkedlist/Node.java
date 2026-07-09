@@ -5,7 +5,12 @@ public class Node {
     public Node next;
     public Node prev;
     public Node random;
-     public Node(int data){
+    public int key;
+    public Node(int data){
         this.data=data;
+    }
+    public Node(int key, int data){
+         this.key = key;
+         this.data = data;
     }
 }
