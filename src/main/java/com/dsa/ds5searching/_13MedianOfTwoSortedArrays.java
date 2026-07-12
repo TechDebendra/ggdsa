@@ -65,8 +65,8 @@ public class _13MedianOfTwoSortedArrays {
 
         while (start <= end) {
 
-            int a = start + (end - start) / 2;
-            int b = (n + m + 1) / 2 - a;
+            int a = start + (end - start) / 2;  // Mid of longest array
+            int b = (n + m + 1) / 2 - a;        // (n + m + 1) / 2 is the mid of result array after merging two arrays
 
             int min1 = (a == n) ? Integer.MAX_VALUE : arr1[a];
             int max1 = (a == 0) ? Integer.MIN_VALUE : arr1[a - 1];
