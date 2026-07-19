@@ -1,6 +1,6 @@
 package com.dsa.ds14tree;
 
-public class _01OrderTraversal {
+public class _00OrderTraversal {
     public static void main(String[] args) {
 
         Node root = new Node(10);
@@ -14,7 +14,7 @@ public class _01OrderTraversal {
         root.right.left = new Node(60);
         root.right.right = new Node(70);
 
-        _01OrderTraversal tree = new _01OrderTraversal();
+        _00OrderTraversal tree = new _00OrderTraversal();
 
         System.out.print("Inorder : ");
         tree.inOrderTraversal(root);
