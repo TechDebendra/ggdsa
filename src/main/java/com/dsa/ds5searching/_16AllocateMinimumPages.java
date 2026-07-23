@@ -21,7 +21,7 @@ public class _16AllocateMinimumPages {
         System.out.println(minPages(arr2, arr2.length, 2)); // 30
 
         int[] arr3 = {10, 5, 30, 1, 2, 5, 10, 10};
-        System.out.println(minPages(arr3, arr3.length, 3)); // 35
+        System.out.println(minPages(arr3, arr3.length, 3)); // 30
 
         int[] arr4 = {12, 34, 67, 90};
         System.out.println(minPages(arr4, arr4.length, 2)); // 113
