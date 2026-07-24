@@ -63,7 +63,7 @@ public class _10LongestSubArrayWithEqualsNoZeroAndOne {
     }
 
     //Efficient Approach using hashing
-    public static int longestSubArray2(int[] arr){
+    public static int longestSubWithEqualZeroAndOne(int[] arr){
 
         HashMap<Integer,Integer> map = new HashMap<>();
 
@@ -82,9 +82,13 @@ public class _10LongestSubArrayWithEqualsNoZeroAndOne {
                 res = i + 1;
             }
 
+            if (map.containsKey(prefixSum)){
+                res = Math.max(res, i - map.get(prefixSum));
+            }
+
             map.putIfAbsent(prefixSum, i);
 
-            res = Math.max(res, i - map.get(prefixSum));
+
         }
 
         return res;

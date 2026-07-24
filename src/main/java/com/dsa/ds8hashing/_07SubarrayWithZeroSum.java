@@ -46,7 +46,7 @@ public class _07SubarrayWithZeroSum {
 
             prefixSum += num;
 
-            if(prefixSum == 0 || sumSet.contains(prefixSum)){
+            if(num == 0 || prefixSum == 0 || sumSet.contains(prefixSum)){
                 return true;
             }
 

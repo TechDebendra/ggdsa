@@ -43,11 +43,11 @@ public class _09LongestSubarrayWithGivenSum {
                 res = i + 1;
             }
 
-            map.putIfAbsent(prefixSum, i);
-
             if(map.containsKey(prefixSum - sum)){
                 res = Math.max(res, i - map.get(prefixSum - sum));
             }
+
+            map.putIfAbsent(prefixSum, i);
         }
 
         return res;
