@@ -2,6 +2,11 @@ package com.dsa.ds5searching;
 
 public class _17KokoEatingBanana {
 
+    public static void main(String[] args) {
+        int[] piles = {3,6,7,11};
+        int h = 8;
+        System.out.println("Minimum eating speed : "+minSpeed(piles,h));
+    }
 
     public static int minSpeed(int[] piles,int h){
         int low = 1;
