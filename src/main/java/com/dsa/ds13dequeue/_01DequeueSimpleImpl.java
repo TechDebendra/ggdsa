@@ -70,14 +70,14 @@ public class _01DequeueSimpleImpl {
         if (isEmpty()){
             return -1;
         }
-        return size-1;
+        return arr[size-1];
     }
 
     public int getFront(){
         if (isEmpty()){
             return -1;
         }
-        return 0;
+        return arr[0];
     }
 
     public static void main(String[] args) {
