@@ -44,9 +44,7 @@ public class _01SearchingInBST {
              }else {
                  root = root.right;
              }
-
          }
-
          return false;
     }
 }
