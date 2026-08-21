@@ -54,7 +54,7 @@ public class _01MinHeap {
 
         heap.set(0, heap.get(heap.size()-1));
         heap.remove(heap.size()-1);
-         heapIfyDown(0);
+        heapIfyDown(0);
         return min;
      }
 
