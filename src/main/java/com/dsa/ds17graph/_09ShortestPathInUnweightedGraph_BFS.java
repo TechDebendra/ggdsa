@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Deque;
 import java.util.List;
 
-public class _09ShortestPathInUnweightedGraph {
+public class _09ShortestPathInUnweightedGraph_BFS {
 
     public int[] shortestPath(List<List<Integer>> adj, int start,int vertices){
         int[] path = new int[vertices];

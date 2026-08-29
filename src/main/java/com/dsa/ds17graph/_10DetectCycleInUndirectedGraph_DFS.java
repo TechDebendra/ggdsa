@@ -2,7 +2,7 @@ package com.dsa.ds17graph;
 
 import java.util.List;
 
-public class _10DetectCycleInUndirectedGraph {
+public class _10DetectCycleInUndirectedGraph_DFS {
     public boolean dfs(List<List<Integer>> adj,int vertices){
         boolean[] visited = new boolean[vertices];
 

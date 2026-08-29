@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
-public class _12TopologicalSorting_KahnS_BFSBased_Algorithm {
+public class _12TopologicalSorting_KahnS_BFS_Based_Algorithm {
     public void topologicalSorting(List<List<Integer>> adj,int vertices){
         // Store incoming edge count for each vertex
         int[] inDegree = new int[vertices];

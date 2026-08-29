@@ -3,7 +3,7 @@ package com.dsa.ds17graph;
 import java.util.List;
 import java.util.Stack;
 
-public class _13TopologicalSortingUsingDFS_and_Stack {
+public class _13TopologicalSortingUsing_DFS_and_Stack {
 
     public void topologicalSort(List<List<Integer>> adj,int vertices){
         // Track vertices that are already visited

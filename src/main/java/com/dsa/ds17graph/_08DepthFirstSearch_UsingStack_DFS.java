@@ -3,7 +3,7 @@ package com.dsa.ds17graph;
 import java.util.List;
 import java.util.Stack;
 
-public class _08DepthFirstSearch_UsingStack {
+public class _08DepthFirstSearch_UsingStack_DFS {
     public void dfs(List<List<Integer>> adj, int vertices, int start) {
         boolean[] visited = new boolean[vertices];
         Stack<Integer> stack = new Stack<>();
