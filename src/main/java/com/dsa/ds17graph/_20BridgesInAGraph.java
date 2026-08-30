@@ -39,7 +39,11 @@ public class _20BridgesInAGraph {
 
 		for (int v : adj.get(start)){
 			if (v == parent[start] && !parentEdgeSkipped){
-				// Skip only the tree edge that brought us here. Any parallel edge to parent is a back edge.
+				// In an undirected graph, the parent of start is also present in start's adjacency list.
+				// That edge is the same DFS tree edge by which we reached start, so it must be ignored once;
+				// otherwise every node would incorrectly look like it has a back edge to its parent.
+				// If there are parallel edges to the same parent, only the first one is skipped.
+				// The remaining parallel edge is a real back edge, so start-parent is not a bridge.
 				parentEdgeSkipped = true;
 				continue;
 			}
