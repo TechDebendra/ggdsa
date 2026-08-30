@@ -8,6 +8,7 @@ public class _17BellmanFordShortestPathAlgorithm {
 	// Bellman-Ford finds shortest paths from one source vertex.
 	// It can handle negative edge weights, unlike Dijkstra's algorithm.
 	public int[] bellmanFord(List<List<Edge>> adj,int source,int vertices){
+
 		if (adj == null || vertices <= 0 || adj.size() != vertices || source < 0 || source >= vertices){
 			throw new IllegalArgumentException("Invalid graph input!");
 		}

@@ -10,6 +10,7 @@ public class _15DijkstraS_AlgorithmForShortestPath {
 	// Dijkstra's algorithm finds shortest paths from one source vertex.
 	// It works only when all edge weights are non-negative.
 	public int[] dijkstra(List<List<Edge>> adj,int source,int vertices){
+
 		if (adj == null || vertices <= 0 || adj.size() != vertices || source < 0 || source >= vertices){
 			throw new IllegalArgumentException("Invalid graph input!");
 		}
