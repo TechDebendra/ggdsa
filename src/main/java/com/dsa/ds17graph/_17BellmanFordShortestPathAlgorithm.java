@@ -1,5 +1,6 @@
 package com.dsa.ds17graph;
 
+import javax.swing.*;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class _17BellmanFordShortestPathAlgorithm {
 					validateEdge(edge,vertices);
 
 					// Relaxation: try to improve distance using edge u -> edge.vertex
-					int newDistance = addSafely(distance[u],edge.weight);
+					int newDistance = distance[u] + edge.weight;
 					if (newDistance < distance[edge.vertex]){
 						distance[edge.vertex] = newDistance;
 						updated = true;
@@ -48,7 +49,8 @@ public class _17BellmanFordShortestPathAlgorithm {
 			}
 		}
 
-		// One extra relaxation check is used to detect a negative weight cycle
+		// After V-1 relaxations, perform one additional pass over all edges.
+		// If any edge can still be relaxed, a reachable negative weight cycle exists.
 		for (int u = 0 ; u < vertices ; u++){
 			if (distance[u] == Integer.MAX_VALUE){
 				continue;
@@ -58,9 +60,10 @@ public class _17BellmanFordShortestPathAlgorithm {
 				validateEdge(edge,vertices);
 
 				// If distance can still improve now, a negative cycle is reachable
-				int newDistance = addSafely(distance[u],edge.weight);
+				int newDistance = distance[u] + edge.weight;
 				if (newDistance < distance[edge.vertex]){
-					throw new IllegalArgumentException("Graph contains negative weight cycle!");
+					throw new IllegalStateException(
+							"Graph contains negative weight cycle!");
 				}
 			}
 		}
@@ -75,14 +78,4 @@ public class _17BellmanFordShortestPathAlgorithm {
 		}
 	}
 
-	private int addSafely(int distance,int weight){
-		// Use long first to avoid silent int overflow
-		long result = (long) distance + weight;
-
-		if (result > Integer.MAX_VALUE || result < Integer.MIN_VALUE){
-			throw new ArithmeticException("Shortest path distance is too large!");
-		}
-
-		return (int) result;
-	}
 }
