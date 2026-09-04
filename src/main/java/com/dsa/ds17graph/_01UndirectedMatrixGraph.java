@@ -1,18 +1,18 @@
 package com.dsa.ds17graph;
 
 public class _01UndirectedMatrixGraph {
-    private int vertex;
+    private int vertices;
     private int edges;
     private int[][] matrix;
 
-    public _01UndirectedMatrixGraph(int vertex){
-        this.vertex = vertex;
+    public _01UndirectedMatrixGraph(int vertices){
+        this.vertices = vertices;
         this.edges = 0;
-        this.matrix = new int[vertex][vertex];
+        this.matrix = new int[vertices][vertices];
     }
 
     public void addEdge(int u,int v){
-        if (u < 0 || u >= vertex || v < 0 || v >= vertex){
+        if (u < 0 || u >= vertices || v < 0 || v >= vertices){
             System.out.println("Invalid vertex.");
             return;
         }
@@ -25,10 +25,10 @@ public class _01UndirectedMatrixGraph {
     }
 
     public void printGraph(){
-        System.out.println("Adjacent graph with vertex "+vertex+" and edges "+edges);
+        System.out.println("Adjacent graph with vertex "+ vertices +" and edges "+edges);
 
-        for (int i=0;i<vertex;i++){
-            for (int j=0;j<vertex;j++){
+        for (int i = 0; i< vertices; i++){
+            for (int j = 0; j< vertices; j++){
                 System.out.print(matrix[i][j]+" ");
             }
             System.out.println();

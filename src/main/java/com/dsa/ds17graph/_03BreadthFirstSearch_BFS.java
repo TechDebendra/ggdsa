@@ -11,14 +11,14 @@ public class _03BreadthFirstSearch_BFS {
         Deque<Integer> queue = new ArrayDeque<>();
 
         visited[start] = true;
-        queue.add(start);
+        queue.offer(start);
 
         while (!queue.isEmpty()){
             int curr = queue.poll();
             System.out.print(curr+" ");
             for (int v : adj.get(curr)){
                 if (!visited[v]){
-                    queue.add(v);
+                    queue.offer(v);
                     visited[v] = true;
                 }
             }

@@ -1,9 +1,6 @@
 package com.dsa.ds17graph;
 
-import java.util.ArrayDeque;
-import java.util.Arrays;
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
 
 public class _09ShortestPathInUnweightedGraph_BFS {
 
@@ -29,6 +26,27 @@ public class _09ShortestPathInUnweightedGraph_BFS {
 
         }
 
+        return path;
+    }
+
+    // Without visited array
+    public int[] shortestPath1(List<List<Integer>> adj,int start,int vertices){
+        int[] path = new int[vertices];
+        Arrays.fill(path,Integer.MAX_VALUE);
+
+        Deque<Integer> queue = new ArrayDeque<>();
+        path[start] = 0;
+        queue.offer(start);
+
+        while (!queue.isEmpty()){
+            int curr = queue.poll();
+            for (int u : adj.get(curr)){
+                if (path[u] == Integer.MAX_VALUE){
+                    path[u] = path[curr]+1;
+                    queue.offer(u);
+                }
+            }
+        }
         return path;
     }
 }

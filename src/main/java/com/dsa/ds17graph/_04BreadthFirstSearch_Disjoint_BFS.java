@@ -16,7 +16,7 @@ public class _04BreadthFirstSearch_Disjoint_BFS {
 
     public void bfs(List<List<Integer>> adj,int start,boolean[] visited){
         Deque<Integer> deque = new ArrayDeque<>();
-        deque.add(start);
+        deque.add(start);               // offer() and add() used to add the element in rear
         visited[start] = true;
 
         while (!deque.isEmpty()){

@@ -8,8 +8,10 @@ public class _08DepthFirstSearch_UsingStack_DFS {
         boolean[] visited = new boolean[vertices];
         Stack<Integer> stack = new Stack<>();
         stack.push(start);
+
         while (!stack.isEmpty()) {
             int current = stack.pop();
+
             if (!visited[current]) {
                 visited[current] = true;
                 System.out.print(current + " ");
