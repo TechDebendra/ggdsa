@@ -1,7 +1,5 @@
 package com.dsa.ds17graph;
 
-import javax.swing.*;
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class Practice {
@@ -196,7 +194,6 @@ public class Practice {
 
             return false;
         }
-
         public boolean cycleDetectedInDirectedGraphUtils(int start, boolean[] visited,boolean[] recStack){
             visited[start] = true;
             recStack[start] = true;
@@ -213,6 +210,110 @@ public class Practice {
 
             return false;
         }
+        //Kahn's algo
+        public void topologicalOrder(){
+            int[] inDegree = new int[vertices];
+
+            for (int i = 0 ; i < vertices ; i++){
+                for (int u : adj.get(i)){
+                    inDegree[u]++;
+                }
+            }
+
+            Deque<Integer> queue = new ArrayDeque<>();
+
+            for (int i = 0 ; i < vertices ; i++){
+                if (inDegree[i] == 0 ){
+                    queue.offer(i);
+                }
+            }
+
+            int visitedVertices = 0;
+            List<Integer> result = new ArrayList<>();
+
+            while (!queue.isEmpty()){
+                int curr = queue.poll();
+                result.add(curr);
+                visitedVertices++;
+                for (int u : adj.get(curr)){
+                    if (--inDegree[u] == 0){
+                        queue.offer(u);
+                    }
+                }
+            }
+
+            if (visitedVertices != vertices){
+                System.out.println("The graph is a cyclic graph.");
+                return;
+            }
+
+            System.out.println(result);
+
+        }
+        //Prim's algo
+        public int mst(List<List<Edge>> adj, int vertices){
+            boolean[] mst = new boolean[vertices];
+            PriorityQueue<Edge>  minHeap = new PriorityQueue<>(Comparator.comparingInt(e -> e.weight));
+            minHeap.add(new Edge(0,0));
+
+            int visitedVertices = 0;
+            int totalWeight = 0;
+
+            while (!minHeap.isEmpty()){
+                Edge curr = minHeap.poll();
+
+                if (mst[curr.vertex]){
+                    continue;
+                }
+
+                mst[curr.vertex] = true;
+                totalWeight += curr.weight;
+                visitedVertices++;
+
+                for (Edge u : adj.get(curr.vertex)){
+                    if (!mst[u.vertex]){
+                        minHeap.add(u);
+                    }
+                }
+            }
+
+            if (visitedVertices != vertices){
+                throw new IllegalArgumentException("Graph is disconnected. MST does not exist.");
+            }
+
+            return totalWeight;
+        }
+        //Dijkstra algo
+        public int[] shortestPathInWeightedGraph(List<List<Edge>> adj, int vertices, int source){
+            int[] dist = new int[vertices];
+            Arrays.fill(dist,Integer.MAX_VALUE);
+
+            boolean[] visited = new boolean[vertices];
+            PriorityQueue<Edge> minHeap = new PriorityQueue<>(Comparator.comparingInt(e->e.weight));
+
+            minHeap.add(new Edge(source,0));
+            dist[source] = 0;
+
+            while (!minHeap.isEmpty()){
+                Edge curr = minHeap.poll();
+                if (visited[curr.vertex]){
+                    continue;
+                }
+                visited[curr.vertex] = true;
+
+                for (Edge u : adj.get(curr.vertex)){
+                    int newDist = dist[curr.vertex] + u.weight;
+                    if (!visited[u.vertex] && newDist < dist[u.vertex]){
+                        dist[u.vertex] = newDist;
+                        minHeap.add(new Edge(u.vertex,newDist));
+                    }
+                }
+
+            }
+
+            return dist;
+        }
+
 
 
 
@@ -252,6 +353,11 @@ public class Practice {
 
         int[] path = graph.shortestPath(0);
         System.out.println("\nShortest path array  from vertex 0 : "+Arrays.toString(path));
+
+        System.out.println("The graph has cycle : "+graph.isCycleDetectedInUndirectedGraph());
+
+        System.out.println("Topological Order :");
+        graph.topologicalOrder();
 
 
 
