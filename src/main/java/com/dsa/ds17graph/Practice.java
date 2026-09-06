@@ -313,8 +313,210 @@ public class Practice {
 
             return dist;
         }
+        //KosaRaju Strongly Connected Components
+        public int scc(List<List<Integer>> adj, int vertices){
+            return sccUtils(adj, vertices).size();
+        }
+        public List<List<Integer>> sccUtils(List<List<Integer>> adj, int vertices){
+            Stack<Integer> stack = new Stack<>();
+
+            boolean[] visited = new boolean[vertices];
+
+            for (int i = 0 ; i < vertices ; i++){
+                if (!visited[i]){
+                    findDecreasingOrderFinishTime(adj,i,visited,stack);
+                }
+            }
+
+            List<List<Integer>> transpose = getTranspose(adj, vertices);
+
+            Arrays.fill(visited,false);
+            List<List<Integer>> result  = new ArrayList<>();
+
+            while (!stack.isEmpty()){
+                int curr = stack.pop();
+                List<Integer> components = new ArrayList<>();
+                if (!visited[curr]){
+                    getSccComponents(transpose,curr,visited,components);
+                    result.add(components);
+                }
+
+            }
 
 
+            return result;
+        }
+        public void findDecreasingOrderFinishTime(List<List<Integer>> adj, int start, boolean[] visited, Stack<Integer> stack){
+            visited[start] = true;
+
+            for (int u : adj.get(start)){
+                if (!visited[u]){
+                    findDecreasingOrderFinishTime(adj,u,visited,stack);
+                }
+            }
+            stack.push(start);
+        }
+        public List<List<Integer>> getTranspose(List<List<Integer>> adj, int vertices){
+            List<List<Integer>> transpose = new ArrayList<>();
+
+            for (int i = 0 ; i < vertices ; i++){
+                transpose.add(new ArrayList<>());
+            }
+
+            for (int i = 0 ; i < vertices ; i++){
+                for (int u : adj.get(i)){
+                    transpose.get(u).add(i);
+                }
+            }
+
+            return transpose;
+        }
+        public void getSccComponents(List<List<Integer>> adj, int start, boolean[] visited, List<Integer> components){
+            visited[start] = true;
+            components.add(start);
+
+            for (int u : adj.get(start)){
+                if (!visited[u]){
+                    getSccComponents(adj, u, visited, components);
+                }
+            }
+        }
+        //Bellman Ford algo
+        public int[] bellmanFord(List<List<Edge>> adj, int source, int vertices){
+            int[] distance = new int[vertices];
+            Arrays.fill(distance,Integer.MAX_VALUE);
+            distance[source] = 0;
+
+            for (int i = 1 ; i < vertices ; i++){
+                boolean updated = false;
+
+                for (int u = 0 ; u < vertices ; u ++){
+                    if (distance[u] == Integer.MAX_VALUE){
+                        continue;
+                    }
+                    for (Edge edge : adj.get(u)){
+                        int newDist = distance[u] + edge.weight;
+                        if (distance[edge.vertex] > newDist){
+                            distance[edge.vertex] = newDist;
+                            updated = true;
+                        }
+                    }
+                }
+                if (!updated){
+                    break;
+                }
+            }
+
+            for (int u = 0 ; u < vertices ; u ++){
+                if (distance[u] == Integer.MAX_VALUE){
+                    continue;
+                }
+                for (Edge edge : adj.get(u)){
+                    int newDist = distance[u] + edge.weight;
+                    if (distance[edge.vertex] > newDist){
+                        throw new IllegalStateException("Graph contain negative cycyle.");
+                    }
+                }
+            }
+
+            return distance;
+        }
+        // Tarjan's Articulation Point algorithm
+        private int time = 0;
+        public List<Integer> articulationPoints(List<List<Integer>> adj, int vertices){
+            time = 0;
+            boolean[] visited = new boolean[vertices];
+            boolean[] articulationPoint = new boolean[vertices];
+            int[] lowTime = new int[vertices];
+            int[] discTime = new int[vertices];
+            int[] parent = new int[vertices];
+
+            Arrays.fill(parent,-1);
+
+            for (int i = 0 ; i < vertices ; i++){
+                if (!visited[i]){
+                    articulationPointsUtils(adj,i,visited,articulationPoint,lowTime,discTime,parent);
+                }
+            }
+
+            List<Integer> result = new ArrayList<>();
+
+            for (int i =0 ; i < vertices ; i++){
+                if (articulationPoint[i]){
+                    result.add(i);
+                }
+            }
+
+            return result;
+        }
+        public void articulationPointsUtils(List<List<Integer>> adj, int start, boolean[] visited, boolean[] articulationPoint, int[] lowTime, int[] discTime, int[] parent){
+            visited[start] = true;
+            lowTime[start] = discTime[start] = ++time;
+            int child = 0;
+
+            for (int u : adj.get(start)){
+                if (!visited[u]){
+                    parent[u] = start;
+                    child++;
+                    articulationPointsUtils(adj, u, visited, articulationPoint, lowTime, discTime, parent);
+
+                    lowTime[start] = Math.min(lowTime[start],lowTime[u]);
+
+                    if (parent[start] == -1 && child > 1){
+                        articulationPoint[start] = true;
+                    }
+
+                    if (parent[start] != -1 && lowTime[u] >= discTime[start]){
+                        articulationPoint[start] = true;
+                    }
+                } else if (u != parent[start]) {
+                    lowTime[start] = Math.min(lowTime[start],discTime[u] );
+                }
+            }
+        }
+        //Tarjan's Bridge Finding Algorithm
+        public List<List<Integer>> getBridges(List<List<Integer>> adj, int vertices){
+            time = 0;
+            boolean[] visited = new boolean[vertices];
+            int[] lowTime = new int[vertices];
+            int[] discTime = new int[vertices];
+            int[] parent = new int[vertices];
+            Arrays.fill(parent,-1);
+
+            List<List<Integer>> result = new ArrayList<>();
+
+            for (int i = 0 ; i < vertices ; i++){
+                if (!visited[i]){
+                    getBridgesUtils(adj,i,visited,lowTime,discTime,parent,result);
+                }
+            }
+
+            return result;
+        }
+        public void getBridgesUtils(List<List<Integer>> adj, int start, boolean[] visited, int[] lowTime, int[] discTime, int[] parent, List<List<Integer>> result){
+            visited[start] = true;
+            lowTime[start] = discTime[start] = ++time;
+            boolean parentBackEdgeSkipped = false;
+
+            for (int u : adj.get(start)){
+                if (u == parent[start] && !parentBackEdgeSkipped){
+                    parentBackEdgeSkipped = true;
+                    continue;
+                }
+                if (!visited[u]){
+                    parent[u] = start;
+                    getBridgesUtils(adj, u, visited, lowTime, discTime, parent, result);
+
+                    lowTime[start] = Math.min(lowTime[start],lowTime[u] );
+
+                    if (lowTime[u] > discTime[start]){
+                        result.add(Arrays.asList(Math.min(start,u),Math.max(start,u)));
+                    }
+                } else {
+                    lowTime[start] = Math.min(lowTime[start],discTime[u]);
+                }
+            }
+        }
 
 
 

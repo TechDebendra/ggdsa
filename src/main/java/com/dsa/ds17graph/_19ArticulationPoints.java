@@ -3,7 +3,7 @@ package com.dsa.ds17graph;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+//Tarjan's Articulation Point algorithm
 public class _19ArticulationPoints {
 
 	private int time;
