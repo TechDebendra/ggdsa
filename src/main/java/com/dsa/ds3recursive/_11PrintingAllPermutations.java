@@ -2,7 +2,7 @@ package com.dsa.ds3recursive;
 
 public class _11PrintingAllPermutations {
     public static void main(String[] args) {
-        String input = "ABCD";
+        String input = "ABC";
         int len = input.length();
         permute(input,0,len-1);
 
